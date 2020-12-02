@@ -1,0 +1,11 @@
+<h1>Welcome!</h1>
+
+<% if @user%>
+<h2><%= @user.email %></h2>
+<% else%>
+
+<%= link_to "Sign in with Google", user_google_omniauth_authorize_path%>
+
+<% end%>
+<%= user_session %>
+
