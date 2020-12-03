@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  listing_id: 1
+  buyer_id: 1
+  user_id: 1
+  amount: 9.99
+  max_bid: 9.99
+  winning_bid: false
+
+two:
+  listing_id: 1
+  buyer_id: 1
+  user_id: 1
+  amount: 9.99
+  max_bid: 9.99
+  winning_bid: false
