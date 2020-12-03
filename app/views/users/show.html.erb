@@ -7,10 +7,11 @@
 <% end%>
 <% end%>
 
-
+<%= if @user.listings.any? %>
 <h3>Listings</h3>
 <%= @user.listings.each do |listing| %>
 <%= link_to listing.title, listing_path(listing) %>
+<% end%>
 <% end%>
 
 <%= if @user.bids.any? %>
