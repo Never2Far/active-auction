@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
          devise :omniauthable, omniauth_providers: [:google, :facebook]
 
+         has_many :organizations, inverse_of: 'admin'
+
          
 
 
