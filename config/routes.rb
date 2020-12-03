@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :items
   resources :listings
   resources :auctions
   root to: 'welcome#home'
