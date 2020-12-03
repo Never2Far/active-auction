@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :items
   resources :listings
   resources :auctions
+  resources :bids
   root to: 'welcome#home'
 
   devise_scope :user do
