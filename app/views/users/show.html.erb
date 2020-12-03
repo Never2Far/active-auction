@@ -1,0 +1,21 @@
+<h1><%= @user.name ? @user.name : @user.email %></h1>
+
+<%= if @user.auctions.any? %>
+<h3>Auctions</h3>
+<%= @user.auctions.each do |auction| %>
+<%= link_to auction.name, auction_path(auction) %>
+<% end%>
+<% end%>
+
+
+<h3>Listings</h3>
+<%= @user.listings.each do |listing| %>
+<%= link_to listing.title, listing_path(listing) %>
+<% end%>
+
+<%= if @user.bids.any? %>
+<h3>Bids</h3>
+<%= @user.bids.each do |bid| %>
+<%= link_to bid.display, bid_path(bid) %>%
+<% end%>
+<% end%>
