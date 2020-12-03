@@ -9,7 +9,7 @@ class CreateListings < ActiveRecord::Migration[6.0]
       t.decimal :reserve_price
       t.datetime :start_time
       t.datetime :end_time
-      t.intger :starting_bid_id
+      t.integer :starting_bid_id
       t.integer :winning_bid_id
       t.string :item_condition
       t.integer :item_qty

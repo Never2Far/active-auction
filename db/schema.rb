@@ -10,7 +10,70 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_02_221409) do
+ActiveRecord::Schema.define(version: 2020_12_03_171006) do
+
+  create_table "auctions", force: :cascade do |t|
+    t.string "name"
+    t.string "organization"
+    t.boolean "private"
+    t.string "type"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer "admin_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "bids", force: :cascade do |t|
+    t.integer "listing_id"
+    t.integer "buyer_id"
+    t.integer "user_id"
+    t.decimal "amount"
+    t.decimal "max_bid"
+    t.boolean "winning_bid"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "listing_id"
+    t.integer "auction_id"
+    t.string "category"
+    t.string "keywords"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "listings", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.integer "user_id"
+    t.integer "seller_user_id"
+    t.integer "auction_id"
+    t.decimal "reserve_price"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer "starting_bid_id"
+    t.integer "winning_bid_id"
+    t.string "item_condition"
+    t.integer "item_qty"
+    t.integer "lot_size"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "active"
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "name"
+    t.string "department"
+    t.string "type"
+    t.integer "admin_user_id"
+    t.string "contact_info"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
