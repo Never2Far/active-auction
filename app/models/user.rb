@@ -7,6 +7,8 @@ class User < ApplicationRecord
          devise :omniauthable, omniauth_providers: [:google, :facebook]
 
          has_many :organizations, inverse_of: 'admin'
+         has_many :auctions, inverse_of: 'admin'
+         has_many :listings, inverse_of: 'seller'
 
          
 
