@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyString
+  user_id: 1
+  seller_user_id: 1
+  auction_id: 1
+  reserve_price: 9.99
+  start_time: 2020-12-03 10:06:20
+  end_time: 2020-12-03 10:06:20
+  starting_bid_id: 
+  winning_bid_id: 1
+  item_condition: MyString
+  item_qty: 1
+  lot_size: 1
+
+two:
+  title: MyString
+  description: MyString
+  user_id: 1
+  seller_user_id: 1
+  auction_id: 1
+  reserve_price: 9.99
+  start_time: 2020-12-03 10:06:20
+  end_time: 2020-12-03 10:06:20
+  starting_bid_id: 
+  winning_bid_id: 1
+  item_condition: MyString
+  item_qty: 1
+  lot_size: 1
