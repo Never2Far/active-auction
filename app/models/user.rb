@@ -4,12 +4,23 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         devise :omniauthable, omniauth_providers: [:google, :facebook]
+  devise :omniauthable, omniauth_providers: [:google, :facebook]
 
-         has_many :organizations, inverse_of: 'admin'
+        #  has_many :organizations, inverse_of: 'admin'
          has_many :auctions, inverse_of: 'admin'
          has_many :listings, inverse_of: 'seller'
+         has_many :bids, inverse_of: 'buyer'
 
+
+         def auctions
+            auctions = []
+            Auction.all.each do |auction|
+              if auction.admin == self
+                auctions << auction
+              end
+            end
+            auctions
+          end
          
 
 
@@ -28,9 +39,6 @@ class User < ApplicationRecord
           user
       end
        
-
-
-
         def self.new_with_session(params, session)
           super.tap do |user|
             if data = session["devise.google_data"] && session["devise.google_data"]["extra"]["raw_info"]
