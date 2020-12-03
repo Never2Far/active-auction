@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :listings
+  resources :auctions
   root to: 'welcome#home'
 
   devise_scope :user do
