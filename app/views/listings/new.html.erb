@@ -1,0 +1,18 @@
+<h2>New Listing</h2>
+
+
+<%= form_for :listing do |f| %>
+<%= f.label :title %>
+<%= f.text_field :title %>
+
+<br><br><p>Item:</p><br>
+<% if current_user.items.any? %>
+<%= f.collection_select(:listing, :item_id, current_user.items, :id, :name) %>
+<% end%>
+<%= f.label :item_name %>
+<%= f.text_field :item_name %><br><br>
+
+
+<%= f.submit, "Create Listing" %>
+
+<% end %>
