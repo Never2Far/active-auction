@@ -1,0 +1,12 @@
+<h2><%= @listing.title %></h2>
+<h2><%# @listing.auction.name %></h2>
+
+<% if @listing.item %>
+<h3><%= link_to @listing.item.name, item_path(@listing.item) %></h3>
+
+
+<h4>Description</h4>
+<p><%= @listing.item.description %></p>
+<% end%>
+<h4>Current Bid: $<%=@listing.current_bid_amount%></h4>
+
