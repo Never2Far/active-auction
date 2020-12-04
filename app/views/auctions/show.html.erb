@@ -1,0 +1,10 @@
+<h1><%= @auction.name %></h1>
+
+<p><%= @auction.name %></p>
+<p><%= @auction.organization %></p>
+
+<% if @auction.listings.any? %>
+<%= @auction.listings.each do |listing|%>
+<%= link_to listing.title, listing_path(listing) %>
+<% end%>
+<% end %>

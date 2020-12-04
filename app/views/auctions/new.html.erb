@@ -1,0 +1,13 @@
+<h1>New Auction</h1>
+
+
+<%= form_for :auction  do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+
+<%= f.label :organization %>
+<%= f.text_field :organization %>
+
+<%= f.submit, "Create Auction" %>
+
+<% end %>
