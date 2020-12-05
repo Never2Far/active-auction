@@ -1,0 +1,42 @@
+<h1><%= @user.name %>'s Dashboard</h1>
+
+
+<h1><%= @user.id %></h1>
+
+<p><%= @user.name %></p>
+
+
+<p><%= @user.email %></p>
+
+<% if @user.auctions.any? %>
+<h3>Auctions</h3>
+<%= @user.auctions.each do |auction| %>
+<%= link_to auction.name, auction_path(auction) %>
+<% end%>
+<% end%>
+
+<% if @user.listings.any? %>
+<h3>Listings</h3>
+<%= @user.listings.each do |listing| %>
+<%= link_to listing.title, listing_path(listing) %>
+<% end%>
+<% end%>
+
+<% if @user.bids.any? %>
+<h3>Bids</h3>
+<%= @user.bids.each do |bid| %>
+<%= link_to bid.display, bid_path(bid) %>%
+<% end%>
+<% end%>
+
+<% if @user.items.any? %>
+<h3>Inventory</h3>
+<%= @user.items.each do |item| %>
+<%= link_to item.name, item_path(item) %>
+<% end%>
+<% end%>
+
+<%= link_to "Create New Auction", new_auction_path %>
+<%= link_to "Create New Listing", new_listing_path %>
+
+
