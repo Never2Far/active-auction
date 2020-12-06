@@ -18,6 +18,7 @@ class Users::SessionsController < Devise::SessionsController
   # DELETE /resource/sign_out
   def destroy
     super
+    destroy_user_session
     redirect_to root
   end
 
