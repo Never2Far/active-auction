@@ -13,5 +13,11 @@
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
     <%= yield %>
+    <% if user_signed_in? %>
+    <% unless params[:action] == 'dashboard' %>
+    <br><br><%= link_to "My Dashboard", '/dashboard' %><br><br>
+    <% end%>
+    <%= link_to "Sign Out", destroy_user_session_path %>
+    <% end%>
   </body>
 </html>
