@@ -5,9 +5,10 @@ class UsersController < ApplicationController
     def show
         @user = User.find_by(id: params[:id])
         if @user == current_user
-            render 'dashboard'
+            redirect_to '/dashboard'
+        else
+        redirect_to root_path
         end
-        
     end
 
     def dashboard
