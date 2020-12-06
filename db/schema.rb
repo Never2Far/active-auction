@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_03_175436) do
+ActiveRecord::Schema.define(version: 2020_12_05_210228) do
 
   create_table "auctions", force: :cascade do |t|
     t.string "name"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2020_12_03_175436) do
     t.string "title"
     t.string "description"
     t.integer "user_id"
-    t.integer "seller_user_id"
+    t.integer "seller_id"
     t.integer "auction_id"
     t.decimal "reserve_price"
     t.datetime "start_time"

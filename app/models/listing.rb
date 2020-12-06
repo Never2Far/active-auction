@@ -1,5 +1,5 @@
 class Listing < ApplicationRecord
-    belongs_to :seller, class_name: 'User', foreign_key: 'seller_user_id'
+    belongs_to :seller, class_name: 'User', foreign_key: 'seller_id'
     has_and_belongs_to_many :items
     has_many :bids
     belongs_to :auction
