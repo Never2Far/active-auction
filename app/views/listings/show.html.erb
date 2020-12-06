@@ -8,5 +8,20 @@
 <h4>Description</h4>
 <p><%= @listing.item.description %></p>
 <% end%>
-<h4>Current Bid: $<%=@listing.current_bid_amount%></h4>
+<h4>Current Bid: $<%=@listing.current_bid_amount%></h4><br><br>
+
+<%= form_for(@bid) do |f| %>
+<%= f.label :amount %>
+<%= f.number_field :amount %>
+
+<%= f.label :max_bid %>
+<%= f.number_field :max_bid %>
+
+<%= f.submit %>
+
+<% end%>
+
+
+
+<%= link_to "Edit Listing", edit_listing_path(@listing) %>
 
