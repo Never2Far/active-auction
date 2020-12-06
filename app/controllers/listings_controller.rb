@@ -10,17 +10,27 @@ class ListingsController < ApplicationController
 
         if @listing.save
             redirect_to listing_path(@listing)
-        end
+        else
 
         #error
 
         redirect_to new_listing_path
-
+        end
     end
 
     def show
         @listing = Listing.find_by(id: params[:id])
         render 'listings/show'
+    end
+
+    def edit
+        @listing = Listing.find_by(id: params[:id])
+    end
+
+    def update
+        @listing = Listing.find_by(id: params[:id])
+        @listing.update(listing_params)
+        redirect_to listing_path(@listing)
     end
 
 private
