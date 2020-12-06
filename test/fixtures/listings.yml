@@ -4,7 +4,7 @@ one:
   title: MyString
   description: MyString
   user_id: 1
-  seller_user_id: 1
+  seller_id: 1
   auction_id: 1
   reserve_price: 9.99
   start_time: 2020-12-03 10:06:20
@@ -19,7 +19,7 @@ two:
   title: MyString
   description: MyString
   user_id: 1
-  seller_user_id: 1
+  seller_id: 1
   auction_id: 1
   reserve_price: 9.99
   start_time: 2020-12-03 10:06:20
