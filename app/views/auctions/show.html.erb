@@ -8,3 +8,7 @@
 <%= link_to listing.title, listing_path(listing) %>
 <% end%>
 <% end %>
+
+<% if user_signed_in? && (current_user == @auction.admin)%>
+    <%= link_to "Create New Listing", new_listing_path %>
+<% end%>
