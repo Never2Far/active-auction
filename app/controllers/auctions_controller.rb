@@ -17,9 +17,10 @@ class AuctionsController < ApplicationController
 
         if @auction.save
             redirect_to auction_path(@auction)
-        end
+        else
 
-        redirect_to new_auction_page
+        redirect_to new_auction_path
+        end
     end
 
     def show
