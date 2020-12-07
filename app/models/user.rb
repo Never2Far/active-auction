@@ -32,6 +32,15 @@ class User < ApplicationRecord
             items
           end
          
+          def bids
+            bids = []
+            Bid.all.each do |bid|
+              if bid.buyer == self
+                bids << bid
+              end
+            end
+            bids
+          end
 
 
 
