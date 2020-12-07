@@ -1,6 +1,16 @@
 <%= form_for(@listing) do |f| %>
 <%= f.label :title %>
-<%= f.text_field :title %>
+<%= f.text_field :title %><br><br>
+<%= f.label :description %>
+<%= f.text_area :description %><br><br>
+<%= f.label :reserve_price, "Reserve Price" %>
+<%= f.number_field :reserve_price%><br><br>
+<%= f.label :start_time, "Start Date" %>
+<%= f.date_field :start_time, min: Date.today %><br><br>
+<%= f.label :duration, "Duration (days):" %>
+<%= f.number_field :duration %><br><br>
+
+
 
 <%= f.submit %>
 
