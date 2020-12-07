@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: 'welcome#home'
-
+  resources :users
   devise_scope :user do
     get 'users/sign_up' => 'devise/registrations#new'
     get 'sign_up' => 'devise/registrations#new'
@@ -16,9 +16,15 @@ Rails.application.routes.draw do
   
   resources :organizations
   resources :items
-  resources :listings
-  resources :auctions
   resources :bids
+
+  resources :listings, shallow: true do
+    resources :bids
+    resources :items
+  end
+
+  resources :auctions
+  
   
 
   
