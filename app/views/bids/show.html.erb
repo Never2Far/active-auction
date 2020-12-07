@@ -1,0 +1,9 @@
+<h1>Bid Details</h1>
+
+<p>Listing: <%= link_to @bid.listing.title, listing_path(@bid.listing) %></p>
+
+<p>Amount: $<%= @bid.amount %></p>
+
+<p>Bidder: <%= @bid.buyer.name %></p>
+
+<p>High Bid: <%= @bid == @bid.listing.bids.last %></p>
