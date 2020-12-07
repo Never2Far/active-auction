@@ -8,14 +8,22 @@
 <h4>Description</h4>
 <p><%= @listing.item.description %></p>
 <% end%>
+
 <h4>Current Bid: $<%=@listing.current_bid_amount%></h4><br><br>
 
-<%= form_for(@bid) do |f| %>
+<h3>Bid History:</h3><br><br>
+<%= @listing.bids.each do |bid| %>
+<p><%= link_to bid.buyer.name, user_path(bid.buyer.id) %>: <%= link_to number_to_currency(bid.amount), bid_path(bid) %></p>
+<% end%>
+
+
+
+<%= form_for([@listing, @bid]) do |f| %>
 <%= f.label :amount %>
-<%= f.number_field :amount %>
+<%= f.number_field :amount, step: :any %>
 
 <%= f.label :max_bid %>
-<%= f.number_field :max_bid %>
+<%= f.number_field :max_bid, step: :any  %>
 
 <%= f.submit %>
 
