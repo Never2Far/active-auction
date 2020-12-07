@@ -20,6 +20,7 @@ class ListingsController < ApplicationController
 
     def show
         @listing = Listing.find_by(id: params[:id])
+        @bid = Bid.new(listing_id: params[:id])
         render 'listings/show'
     end
 
@@ -36,7 +37,7 @@ class ListingsController < ApplicationController
 private
 
 def listing_params
-    params.require(:listing).permit(:id, :item_id, :item_name, :title, :description, :reserve_price, :start_time, :end_time, :item_condition, :item_qty, :lot_size, :active)
+    params.require(:listing).permit(:id, :item_id, :item_name, :title, :description, :reserve_price, :start_time, :end_time, :item_condition, :item_qty, :lot_size, :active, :duration)
 end
 
 
