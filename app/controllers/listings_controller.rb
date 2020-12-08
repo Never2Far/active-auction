@@ -15,7 +15,7 @@ class ListingsController < ApplicationController
             redirect_to listing_path(@listing)
         else
 
-        #error
+        flash[:alert] = "Something went wrong, please check information and try again."
 
         redirect_to new_listing_path
         end
@@ -33,7 +33,16 @@ class ListingsController < ApplicationController
 
     def update
         @listing = Listing.find_by(id: params[:id])
-        @listing.update(listing_params)
+        
+            
+    
+            if @listing.update(listing_params)
+                redirect_to listing_path(@listing)
+            else
+                redirect_to edit_listing_path(@listing)
+            end
+       
+        
         redirect_to listing_path(@listing)
     end
 
