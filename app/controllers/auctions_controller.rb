@@ -15,6 +15,7 @@ class AuctionsController < ApplicationController
 
     def create
         @auction = Auction.new(auction_params)
+        @auction.admin_id = current_user.id
 
         if @auction.save
             redirect_to auction_path(@auction)
