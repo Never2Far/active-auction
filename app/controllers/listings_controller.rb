@@ -1,5 +1,6 @@
 class ListingsController < ApplicationController
     before_action :authenticate_user!
+    before_action :check_for_cancel, :only => [:create, :update]
 
     def new
         @listing = Listing.new
@@ -49,4 +50,9 @@ def end_date(listing)
     listing.end_date = (listing.start_date + listing.duration.days).strftime("%b %-d, %Y %H:%M")
 end
 
+def check_for_cancel
+    if params[:commit] == "Cancel"
+      redirect_to '/dashboard'
+    end
+  end
 end
