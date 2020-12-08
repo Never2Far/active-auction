@@ -16,7 +16,7 @@ class Users::SessionsController < Devise::SessionsController
     if user_signed_in?
     redirect_to '/dashboard'
     else
-      redirect_to new_users_session_path
+      redirect_to '/'
   end
 
   # DELETE /resource/sign_out
