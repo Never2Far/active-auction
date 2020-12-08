@@ -22,15 +22,15 @@ class User < ApplicationRecord
             auctions
           end
 
-          def items
-            items = []
-            self.listings.each do |listing|
-              if listing.seller == self
-                items << listing.item
-              end
-            end
-            items
-          end
+          # def items
+          #   items = []
+          #   self.listings.each do |listing|
+          #     if listing.seller == self
+          #       items << listing.item
+          #     end
+          #   end
+          #   items
+          # end
          
           def bids
             bids = []
@@ -40,6 +40,16 @@ class User < ApplicationRecord
               end
             end
             bids
+          end
+
+          def listings
+            listings = []
+            Listing.all.each do |listing|
+              if listing.seller == self
+                listings << listing
+              end
+            end
+            listings
           end
 
 
