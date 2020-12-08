@@ -1,0 +1,148 @@
+<h1>Search</h1>
+
+<h2>What would you like to search for/by?</h2>
+
+<input type="radio" name="searchType" id="userSearch" onclick="searchType()">User</input>
+<input type="radio" name="searchType" id="auctionSearch" onclick="searchType()">Auction</input>
+<input type="radio" name="searchType" id="listingSearch" onclick="searchType()">Listing</input>
+<input type="radio" name="searchType" id="bidSearch" onclick="searchType()">Bids</input>
+
+
+<div id="searchBox" style="display: none">
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Start typing to filter results..">
+</div>
+
+<div id="userList" style="display: none">
+  <ul class="long-list">
+      <% User.all.sort_by{|user| user.name.downcase }.each do |user| %>
+      <li><%= link_to user.name, user_path(user) %></li>
+      <% end %>
+  </ul>
+</div>
+
+<div id="auctionList" style="display: none">
+<ul class="long-list">
+  <% Auction.all.sort_by{|auction| auction.name.downcase }.each do |auction| %>
+  <li><%= link_to auction.name, auction_path(auction) %></li>
+  <% end %>
+</ul>
+</div>
+
+
+<div id="listingList" style="display: none">
+  <ul class="long-list">
+    <% Listing.all.sort_by{|listing| listing.title.downcase }.each do |listing| %>
+    <li><%= link_to listing.title, listing_path(listing) %></li>
+    <% end %>
+    </ul>
+</div>
+
+<div id="bidList" style="display: none">
+  <ul class="long-list">
+    <% Bid.all.sort_by{|bid| bid.buyer.name.downcase }.each do |bid| %>
+    <li><%= link_to bid.display, bid_path(bid) %></li>
+    <% end %>
+    </ul>
+</div>
+
+
+
+
+    <script>
+
+      function searchType() {
+        var userSearch = document.getElementById("userSearch");
+        var auctionSearch = document.getElementById("auctionSearch");
+        var listingSearch = document.getElementById("listingSearch");
+        var bidSearch = document.getElementById("bidSearch");
+
+        var searchTypes = [auctionSearch, listingSearch, userSearch, bidSearch]
+        var listId;
+        var searchBox = document.getElementById("searchBox");
+        searchBox.style.display = searchTypes.some(element => element.checked == true) ? "block" : "none";
+
+
+        switch (searchTypes.find(element => element.checked == true)) {
+          case auctionSearch:
+          // searchBox.style.display = "block";
+          
+            listId = "auctionList";
+        document.getElementById("listingList").style.display = "none";
+        document.getElementById("userList").style.display = "none";
+        document.getElementById("bidList").style.display = "none";
+            break;
+        case listingSearch:
+        // searchBox.style.display = "block";
+          listId = "listingList";
+          document.getElementById("auctionList").style.display = "none";
+        
+        document.getElementById("userList").style.display = "none";
+        document.getElementById("bidList").style.display = "none";
+          break;
+          case userSearch:
+          // searchBox.style.display = "block";
+            listId = "userList";
+            document.getElementById("auctionList").style.display = "none";
+        document.getElementById("listingList").style.display = "none";
+        
+        document.getElementById("bidList").style.display = "none";
+            break;
+            case bidSearch:
+            // searchBox.style.display = "block";
+              listId = "bidList";
+              document.getElementById("auctionList").style.display = "none";
+        document.getElementById("listingList").style.display = "none";
+        document.getElementById("userList").style.display = "none";
+        
+              break;
+                  // default: 
+                  // searchBox.style.display = "block";
+                  // listId = "auctionList";
+                  // break;
+        }
+        searchTypes.forEach(
+          element => 
+          document
+        )
+      
+        document.getElementById(listId).style.display = "block";
+        return listId
+      }
+
+
+      
+      function myFunction() {
+
+
+
+
+
+        
+        // Declare variables
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById('myInput');
+        filter = input.value.toUpperCase();
+        ul = document.getElementById(searchType());
+        li = ul.getElementsByTagName('li');
+      
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < li.length; i++) {
+          a = li[i].getElementsByTagName("a")[0];
+          txtValue = a.textContent || a.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+          } else {
+            li[i].style.display = "none";
+          }
+        }
+      }
+
+
+    //   function ShowHideDiv() {
+        
+        
+    //     searchBox.style.display = searchTypes.some(element => element.checked == true) ? "block" : "none";
+        
+        
+    // }
+      </script>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'welcome#home'
+  get '/search' => 'application#search'
   resources :users
   devise_scope :user do
     get 'users/sign_up' => 'devise/registrations#new'
