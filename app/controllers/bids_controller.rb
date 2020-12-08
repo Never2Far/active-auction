@@ -1,4 +1,5 @@
 class BidsController < ApplicationController
+    before_action :authenticate_user!
 
 
 def index
@@ -22,7 +23,7 @@ def create
     unless !@bid.save
         redirect_to listing_path(@listing)
     else
-        ##error message (flash)
+        flash[:alert] = "Error"
         redirect_to listing_path(@listing)
     end
 
