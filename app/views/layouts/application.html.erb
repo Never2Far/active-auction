@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>ActiveAuction</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" type="text/css" />
+    <link rel="stylesheet" href="assets/style.css" type="text/css" >
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -15,8 +15,7 @@
       <div id="sub-page-container">
   <header id="header">
   <div id="banner">
-        <img src="/images/logo2.png" class="logo" alt="Auction Logo">
-        <span id="bannerText"></span>
+        <img src="assets/logo2.png" class="logo" alt="Auction Logo">
   </div>
   <div id="navLinks">
       <% if user_signed_in? %>

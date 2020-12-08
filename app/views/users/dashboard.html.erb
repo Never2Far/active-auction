@@ -1,5 +1,5 @@
 <h1><%= @user.name %>'s Dashboard</h1>
-
+<h1><%= @user.username %></h1>
 
 <h1><%= @user.id %></h1>
 
@@ -11,14 +11,14 @@
 <% if @user.auctions.any? %>
 <h3>Auctions</h3>
 <%= @user.auctions.each do |auction| %>
-<%= link_to auction.name, auction_path(auction) %>
+<%= link_to auction.name, auction_path(auction) %><br>
 <% end%>
 <% end%>
 
 <% if @user.listings.any? %>
 <h3>Listings</h3>
 <%= @user.listings.each do |listing| %>
-<p><%= link_to listing.title, listing_path(listing) %></p>
+<%= link_to listing.title, listing_path(listing) %><br>
 <% end%>
 <% end%>
 
@@ -36,7 +36,12 @@
 <%# end%>
 <%# end%>
 
-<br><br><%= link_to "Create New Auction", new_auction_path %><br><br>
-<%= link_to "Create New Listing", new_listing_path %><br><br>
+<br><br>
+<form action="/auctions/new" method="get">
+    <input type="submit" value="Create Auction">
+</form>
+<form action="/listings/new" method="get">
+    <input type="submit" value="Create Listing">
+</form><br><br>
 
 
