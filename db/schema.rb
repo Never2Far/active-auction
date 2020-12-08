@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_07_234323) do
+ActiveRecord::Schema.define(version: 2020_12_08_040043) do
 
   create_table "auctions", force: :cascade do |t|
     t.string "name"
@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(version: 2020_12_07_234323) do
     t.decimal "reserve_price"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.integer "starting_bid_id"
     t.integer "winning_bid_id"
     t.string "item_condition"
     t.integer "item_qty"
@@ -73,6 +72,8 @@ ActiveRecord::Schema.define(version: 2020_12_07_234323) do
     t.integer "duration"
     t.datetime "start_date"
     t.datetime "end_date"
+    t.decimal "starting_bid"
+    t.decimal "bid_increment"
   end
 
   create_table "organizations", force: :cascade do |t|

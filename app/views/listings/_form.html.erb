@@ -5,11 +5,17 @@
 <%= f.label :description %>
 <%= f.text_area :description %><br><br>
 
-<%= f.label :reserve_price, "Reserve Price" %>
+<%= f.label :starting_bid, "Starting Bid $" %>
+<%= f.number_field :starting_bid %><br><br>
+
+<%= f.label :reserve_price, "Reserve Price $" %>
 <%= f.number_field :reserve_price%><br><br>
 
+<%= f.label :bid_increment, "Bid Increment (Add a decimal point before the entered value to identify it as a percentage of the reserve price specified above(ex. enter .25 for 25%) rather than a dollar amount:" %><br>
+<%= f.number_field :bid_increment %><br><br>
+
 <%= f.label :start_date %>
-<%= f.date_field :start_date, {min: Date.today, order: [:month, :day, :year]} %>
+<%= f.date_field :start_date, {min: Date.today, order: [:month, :day, :year]} %><br><br>
 
 <%= f.label :start_time, "Start Time: " %>
 <%= f.time_field :start_time, {step: 60}  %><br><br>

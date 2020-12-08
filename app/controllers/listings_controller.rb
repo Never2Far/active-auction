@@ -49,7 +49,11 @@ class ListingsController < ApplicationController
 private
 
 def listing_params
-    params.require(:listing).permit(:id, :item_id, :item_name, :title, :description, :reserve_price, :start_date, :end_date, :start_time, :end_time, :item_condition, :item_qty, :lot_size, :active, :duration)
+    params.require(:listing).permit(:id, :item_id, :item_name, :title, 
+        :description, :reserve_price, :start_date, 
+        :end_date, :start_time, :end_time, :item_condition, 
+        :item_qty, :lot_size, :active, :duration, :starting_bid,
+        :bid_increment)
 end
 
 def end_date(listing)
