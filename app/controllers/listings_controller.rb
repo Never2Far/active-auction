@@ -7,6 +7,8 @@ class ListingsController < ApplicationController
 
     def create
         @listing = Listing.new(listing_params)
+        @listing.seller_id = current_user.id
+        end_date(@listing)
 
         if @listing.save
             redirect_to listing_path(@listing)
@@ -37,8 +39,14 @@ class ListingsController < ApplicationController
 private
 
 def listing_params
-    params.require(:listing).permit(:id, :item_id, :item_name, :title, :description, :reserve_price, :start_time, :end_time, :item_condition, :item_qty, :lot_size, :active, :duration)
+    params.require(:listing).permit(:id, :item_id, :item_name, :title, :description, :reserve_price, :start_date, :end_date, :start_time, :end_time, :item_condition, :item_qty, :lot_size, :active, :duration)
 end
 
+def end_date(listing)
+    t = listing.start_time
+    d = listing.start_date
+    listing.start_date = DateTime.new(d.year, d.month, d.day, t.hour, t.min)
+    listing.end_date = (listing.start_date + listing.duration.days).strftime("%b %-d, %Y %H:%M")
+end
 
 end

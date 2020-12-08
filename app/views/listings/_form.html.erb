@@ -5,12 +5,12 @@
 <%= f.text_area :description %><br><br>
 <%= f.label :reserve_price, "Reserve Price" %>
 <%= f.number_field :reserve_price%><br><br>
-<%= f.label :start_time, "Start Date" %>
-<%= f.date_field :start_time, min: Date.today %><br><br>
+<%= f.label :start_date %>
+<%= f.date_field :start_date, {min: Date.today, order: [:month, :day, :year]} %>
+<%= f.label :start_time, "Start Time: " %>
+<%= f.time_field :start_time, {step: 60}  %><br><br>
 <%= f.label :duration, "Duration (days):" %>
 <%= f.number_field :duration %><br><br>
-
-
 
 <%= f.submit %>
 

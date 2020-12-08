@@ -5,6 +5,11 @@ class Listing < ApplicationRecord
     belongs_to :auction
 
 
+    def active?
+        DateTime.now.between?(self.start_date, self.end_date)
+    end
+
+
     def current_bid
         self.bids.any? ? self.bids.last : nil
     end
@@ -16,6 +21,8 @@ class Listing < ApplicationRecord
             "0.00"
         end
     end
+
+   
 
     def item
         self.items.first

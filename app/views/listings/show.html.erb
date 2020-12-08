@@ -1,26 +1,62 @@
+<script>
+var endDate = "<%= @listing.end_date %>";
+// Set the date we're counting down to
+var countDownDate = new Date(endDate).getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="countdown"
+  document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("countdown").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
+
+
 <h2><%= @listing.title %></h2>
 <h2><%# @listing.auction.name %></h2>
 
-<% if @listing.item %>
-<h3><%= link_to @listing.item.name, item_path(@listing.item) %></h3>
+<p><%= @listing.description %></p>
+<p><%= @listing.end_date %></p>
 
 
-<h4>Description</h4>
-<p><%= @listing.item.description %></p>
-<% end%>
 
-<h4>Current Bid: $<%=@listing.current_bid_amount%></h4><br><br>
 
-<h3>Bid History:</h3><br><br>
+<h4>Current Bid: $<%=@listing.current_bid_amount%></h4><br>
+
+<% if @listing.bids.any? %>
+<h3>Bid History:</h3>
 <%= @listing.bids.each do |bid| %>
 <p><%= link_to bid.buyer.name, user_path(bid.buyer.id) %>: <%= link_to number_to_currency(bid.amount), bid_path(bid) %></p>
+<% end%><br><br>
 <% end%>
 
+<p>Active: <%= @listing.active? %></p>
 
+
+<h3>Time Remaining: <span id="countdown"></span></h3>
 
 <%= form_for([@listing, @bid]) do |f| %>
 <%= f.label :amount %>
-<%= f.number_field :amount, step: :any %>
+<%= f.number_field :amount, step: :any %><br>
 
 <%= f.label :max_bid %>
 <%= f.number_field :max_bid, step: :any  %>
@@ -32,4 +68,8 @@
 
 
 <%= link_to "Edit Listing", edit_listing_path(@listing) %>
+
+
+
+
 
