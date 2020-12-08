@@ -40,7 +40,11 @@ var x = setInterval(function() {
 
 
 
-<h4>Current Bid: $<%=@listing.current_bid_amount%></h4><br>
+<h4>Current Bid: <%=number_to_currency(@listing.current_bid_amount)%> (
+  <% unless @listing.reserve_met? %>
+  Reserve not met
+  <% end%>
+  )</h4><br>
 
 <% if @listing.bids.any? %>
 <h3>Bid History:</h3>
@@ -53,7 +57,16 @@ var x = setInterval(function() {
 
 
 <h3>Time Remaining: <span id="countdown"></span></h3>
-
+<% if current_user == @listing.current_bid.buyer%>
+<h3>You are currently the highest bidder!</h3>
+<p>Max bid: <%= number_to_currency(@listing.current_bid.max_bid) %></p><br>
+<form action="/bids/<%= @listing.current_bid.id %>/edit" method="post">
+<label for="new_max_bid">$</label>
+<input type="number" name="bid[new_max_bid]" id="new_max_bid" value="<%= @listing.current_bid.max_bid %>">
+    <input type="submit" value="Change Max Bid">
+</form>
+<% end%>
+<h3></h3>
 <%= form_for([@listing, @bid]) do |f| %>
 <%= f.label :amount %>
 <%= f.number_field :amount, step: :any %><br>

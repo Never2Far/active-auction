@@ -18,11 +18,13 @@ class Listing < ApplicationRecord
         if self.current_bid
             self.current_bid.amount
         else
-            "0.00"
+            0.00
         end
     end
 
-   
+   def reserve_met?
+       (self.current_bid_amount >= self.reserve_price)
+   end
 
     def item
         self.items.first
