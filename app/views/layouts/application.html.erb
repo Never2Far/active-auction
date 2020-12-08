@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>ActiveAuction</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" type="text/css" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,14 +11,34 @@
   </head>
 
   <body>
+  <div id="page-container">
+      <div id="sub-page-container">
+  <header id="header">
+  <div id="banner">
+        <img src="/images/logo2.png" class="logo" alt="Auction Logo">
+        <span id="bannerText"></span>
+  </div>
+  <div id="navLinks">
+      <% if user_signed_in? %>
+      <% unless request.path.include?('search')%>
+        <a href="/search">Search</a>
+        <% end%>
+        <a href="/dashboard">My Dashboard</a>
+        <a href="/sign_out">Sign Out</a>
+      <% end %>
+
+  </div>
+  
+  </header>
+   <div id="content-wrap">
+       <div id="flash-wrap">
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
+  </div>
     <%= yield %>
-    <% if user_signed_in? %>
-    <% unless params[:action] == 'dashboard' %>
-    <br><br><%= link_to "My Dashboard", '/dashboard' %><br><br>
-    <% end%>
-    <%= link_to "Sign Out", destroy_user_session_path %>
-    <% end%>
+    </div>
+    <footer id="footer">&#169;2020 Seth Near</footer>
+    </div>
+  </div>
   </body>
 </html>

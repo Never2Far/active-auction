@@ -1,0 +1,134 @@
+html {
+  min-height: 100vh;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  padding: 0;
+  background-color: rgb(190, 190, 190);
+}
+
+
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+    
+}
+
+#sub-page-container {
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  min-height: 100vh;
+  padding-top: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: white;
+}
+  
+#content-wrap {
+    padding-top: 4rem;
+    padding-bottom: 2rem;   
+}
+
+#flash-wrap p {
+  font-size: 1.5rem;
+  color: red;
+}
+
+#card-wrapper{
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  border: solid black 2px;
+  padding: 5px;
+}
+  
+#header {
+    position: absolute;
+    top: 0;
+    width: 900px;
+    height: 4rem; 
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-top-color: black;
+    border-bottom-color: black;
+    border-width: 5px;
+}
+
+#banner {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+#bannerText {
+  float: left;
+  font-size: 3rem;
+vertical-align: top;
+}
+
+.logo {
+  float: left;
+  height: 4rem;
+  width: auto;
+}
+
+#navLinks {
+  padding-top: 4px;
+  float: right;
+}
+
+#footer {
+  position: absolute;
+    bottom: 0;
+    width: 900px;
+    height: 2rem;
+    text-align: right;
+}
+
+#myInput {
+    background-image: url('https://www.w3schools.com/css/searchicon.png'); /* Add a search icon to input */
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 830px; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-top: 30px;
+    margin-bottom: 12px; /* Add some space below the input */
+  }
+  
+  #myUL {
+    /* Remove default list styling */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  #myUL li a {
+    border: 1px solid #ddd; /* Add a border to all links */
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #f6f6f6; /* Grey background color */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove default text underline */
+    font-size: 18px; /* Increase the font-size */
+    color: black; /* Add a black text color */
+    display: block; /* Make it into a block element to fill the whole list */
+  }
+  
+  #myUL li a:hover:not(.header) {
+    background-color: #eee; /* Add a hover effect to all links, except for headers */
+  }
+
+
+
+  .long-list {
+    column-count: 3;
+    column-width: 32%;
+    column-gap: normal;
+  }
