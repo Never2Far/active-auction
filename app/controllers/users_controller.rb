@@ -7,7 +7,7 @@ class UsersController < ApplicationController
         if @user == current_user
             redirect_to '/dashboard'
         else
-        redirect_to root_path
+        redirect_to user_path(@user)
         end
     end
 
@@ -18,10 +18,4 @@ class UsersController < ApplicationController
             redirect_to '/sign_in'
         end
     end
-
-
-    # def set_user
-    #     @user = User.find_by(id: params[:id])
-    # end
-
 end
