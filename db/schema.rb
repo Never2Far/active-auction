@@ -10,27 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_08_171546) do
+ActiveRecord::Schema.define(version: 2020_12_08_214003) do
 
   create_table "auctions", force: :cascade do |t|
     t.string "name"
-    t.string "organization"
-    t.boolean "private"
+    t.boolean "private?"
     t.string "type"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.datetime "start_time"
     t.datetime "end_time"
     t.integer "admin_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "duration"
   end
 
   create_table "bids", force: :cascade do |t|
     t.integer "listing_id"
     t.integer "buyer_id"
-    t.integer "user_id"
     t.decimal "amount"
     t.decimal "max_bid"
-    t.boolean "winning_bid"
+    t.boolean "winning_bid?"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -56,32 +57,22 @@ ActiveRecord::Schema.define(version: 2020_12_08_171546) do
   create_table "listings", force: :cascade do |t|
     t.string "title"
     t.string "description"
-    t.integer "user_id"
     t.integer "seller_id"
     t.integer "auction_id"
     t.decimal "reserve_price"
+    t.decimal "bid_increment"
     t.datetime "start_time"
     t.datetime "end_time"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer "starting_bid"
     t.integer "winning_bid_id"
     t.string "item_condition"
     t.integer "item_qty"
     t.integer "lot_size"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.boolean "active"
+    t.boolean "active?"
+    t.string "status"
     t.integer "duration"
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.decimal "starting_bid"
-    t.decimal "bid_increment"
-  end
-
-  create_table "organizations", force: :cascade do |t|
-    t.string "name"
-    t.string "department"
-    t.string "type"
-    t.integer "admin_user_id"
-    t.string "contact_info"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -100,6 +91,7 @@ ActiveRecord::Schema.define(version: 2020_12_08_171546) do
     t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "items_listings", "items"
