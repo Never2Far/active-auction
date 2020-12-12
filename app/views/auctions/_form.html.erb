@@ -2,8 +2,15 @@
 <%= f.label :name %>
 <%= f.text_field :name %><br><br>
 
-<%= f.label :organization %>
-<%= f.text_field :organization %>
+<%= f.label :start_date %>
+<%= f.date_field :start_date, {min: Date.today, order: [:month, :day, :year]} %><br><br>
+
+<%= f.label :start_time, "Start Time: " %>
+<%= f.time_field :start_time, {step: 60}  %><br><br>
+
+<%= f.label :duration, "Duration (days):" %>
+<%= f.number_field :duration %><br><br>
+
 
 <br><br><%= f.submit %> <%= f.submit "Cancel" %>
 
