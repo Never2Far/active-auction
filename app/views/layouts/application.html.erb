@@ -22,7 +22,9 @@
       <% unless request.path.include?('search')%>
         <a href="/search">Search</a>
         <% end%>
+        <% unless request.path.include?('dashboard')%>
         <a href="/dashboard">My Dashboard</a>
+        <% end%>
         <a href="/sign_out">Sign Out</a>
       <% end %>
 
