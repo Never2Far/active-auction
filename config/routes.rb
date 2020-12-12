@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     get 'users/:id' => 'users#show'
     get 'dashboard' => 'users#dashboard'
   end
+
+  post 'dashboard' => 'welcome#add_username'
   
   devise_for :users, controllers: {sessions: 'users/sessions', omniauth_callbacks: 'users/omniauth_callbacks'}
   
