@@ -16,6 +16,7 @@ class AuctionsController < ApplicationController
     def create
         @auction = Auction.new(auction_params)
         @auction.admin_id = current_user.id
+        set_end_date(@auction)
 
         if @auction.save
             redirect_to auction_path(@auction)
@@ -46,7 +47,16 @@ class AuctionsController < ApplicationController
     private
 
     def auction_params
-        params.require(:auction).permit(:name, :organization, :private, :type, :start_time, :end_time, :admin_id)
+        params.require(:auction).permit(:name, :organization, :private, :type,
+                                     :start_time, :end_time, :start_date, :end_date,
+                                    :duration, :admin_id)
+    end
+
+    def set_end_date(auction)
+        t = auction.start_time
+        d = auction.start_date
+        auction.start_date = DateTime.new(d.year, d.month, d.day, t.hour, t.min)
+        auction.end_date = (auction.start_date + auction.duration.days).strftime("%b %-d, %Y %H:%M")
     end
 
     def check_for_cancel
