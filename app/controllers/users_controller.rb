@@ -18,4 +18,18 @@ class UsersController < ApplicationController
             redirect_to '/sign_in'
         end
     end
+
+    def update
+        @user = User.find_by(id: params[:id])
+
+        @user.update(username: user_params[:username])
+        # @user.username = user_params[:username]
+        redirect_to '/dashboard'
+    end
+
+    private
+
+    def user_params
+        params.require(:user).permit(:username)
+    end
 end
