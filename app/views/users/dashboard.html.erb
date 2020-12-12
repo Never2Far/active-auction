@@ -1,3 +1,7 @@
+
+
+
+<% unless @user.username == nil || @user.username == ""%>
 <h1><%= @user.name %>'s Dashboard</h1>
 <h1><%= @user.username %></h1>
 
@@ -43,5 +47,14 @@
 <form action="/listings/new" method="get">
     <input type="submit" value="Create Listing">
 </form><br><br>
+
+<% else%>
+<h2>Please create a username to continue (this is what will be visible to other users)</h2>
+<%= form_for(@user) do |f| %>
+<%= f.label :username  %>
+<%= f.text_field :username %><br><br>
+<%= f.submit "Create Username" %>
+<% end%>
+<% end%>
 
 
