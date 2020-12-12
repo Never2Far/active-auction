@@ -14,8 +14,8 @@
 
 <div id="userList" style="display: none">
   <ul class="long-list">
-      <% User.all.sort_by{|user| user.name.downcase }.each do |user| %>
-      <li><%= link_to user.name, user_path(user) %></li>
+      <% User.all.sort_by{|user| user.username.downcase }.each do |user| %>
+      <li><%= link_to user.username, user_path(user) %></li>
       <% end %>
   </ul>
 </div>
@@ -39,7 +39,7 @@
 
 <div id="bidList" style="display: none">
   <ul class="long-list">
-    <% Bid.all.sort_by{|bid| bid.buyer.name.downcase }.each do |bid| %>
+    <% Bid.all.sort_by{|bid| bid.buyer.username.downcase }.each do |bid| %>
     <li><%= link_to bid.display, bid_path(bid) %></li>
     <% end %>
     </ul>
