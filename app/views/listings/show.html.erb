@@ -25,7 +25,7 @@ var x = setInterval(function() {
   // If the count down is finished, write some text
   if (distance < 0) {
     clearInterval(x);
-    document.getElementById("countdown").innerHTML = "EXPIRED";
+    document.getElementById("countdown").innerHTML = "Ended";
   }
 }, 1000);
 </script>
@@ -46,17 +46,21 @@ var x = setInterval(function() {
   <% end%>
   )</h4><br>
 
-<% if @listing.bids.any? %>
-<h3>Bid History:</h3>
-<%= @listing.bids.each do |bid| %>
-<p><%= link_to bid.buyer.name, user_path(bid.buyer.id) %>: <%= link_to number_to_currency(bid.amount), bid_path(bid) %></p>
-<% end%><br><br>
-<% end%>
+
 
 <p>Active: <%= @listing.active? %></p>
 
 
 <h3>Time Remaining: <span id="countdown"></span></h3>
+
+
+<% if @listing.bids.any? %>
+<h3>Bid History:</h3>
+<%= @listing.bids.each do |bid| %>
+<p><%= link_to bid.buyer.name, user_path(bid.buyer.id) %>: <%= link_to number_to_currency(bid.amount), bid_path(bid) %></p>
+<% end%><br><br>
+
+
 <% if current_user == @listing.current_bid.buyer%>
 <h3>You are currently the highest bidder!</h3>
 <p>Max bid: <%= number_to_currency(@listing.current_bid.max_bid) %></p><br>
@@ -66,7 +70,8 @@ var x = setInterval(function() {
     <input type="submit" value="Change Max Bid">
 </form>
 <% end%>
-<h3></h3>
+<% end%>
+
 <%= form_for([@listing, @bid]) do |f| %>
 <%= f.label :amount %>
 <%= f.number_field :amount, step: :any %><br>
@@ -79,10 +84,14 @@ var x = setInterval(function() {
 <% end%>
 
 
+<% if current_user == @listing.seller %>
+<br><br>
 
-<%= link_to "Edit Listing", edit_listing_path(@listing) %>
+<form action="/listings/<%=  @listing.id%>/edit" method="get">
+    <input type="submit" value="Edit Listing">
+</form>
 
-
-
-
-
+<form action="/listings/<%=  @listing.id%>" method="delete">
+    <input type="submit" value="Delete Listing">
+</form>
+<% end%>
