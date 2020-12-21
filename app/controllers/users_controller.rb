@@ -6,8 +6,6 @@ class UsersController < ApplicationController
         @user = User.find_by(id: params[:id])
         if @user == current_user
             redirect_to '/dashboard'
-        else
-        redirect_to user_path(@user)
         end
     end
 
