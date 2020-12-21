@@ -1,23 +1,29 @@
 Rails.application.routes.draw do
   root to: 'welcome#home'
   get '/search' => 'application#search'
-  resources :users
+  devise_for :users, controllers: {sessions: 'users/sessions', omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations'}
+
+
   devise_scope :user do
-    get 'users/sign_up' => 'devise/registrations#new'
-    get 'sign_up' => 'devise/registrations#new'
+    #get 'users/sign_up' => 'devise/registrations#new', :as => :registration
+    #get 'sign_up' => 'devise/registrations#new'
+    #post 'users' => 'devise/registrations#create'
     get 'sign_out' => 'devise/sessions#destroy'
     get 'users/sign_out' => 'devise/sessions#destroy'
     get 'sign_in' => 'devise/sessions#new'
     delete 'sign_out', :to => 'devise/sessions#destroy'#, :as => :destroy_user_session
-    get 'users/:id' => 'users#show'
+    #get 'users/:id' => 'users#show'
     get 'dashboard' => 'users#dashboard'
   end
 
-  post 'dashboard' => 'welcome#add_username'
+  resources :users, only: [:show, :edit, :update]
+  # get 'users/sign_up' => 'devise/registrations#new'
+  # get 'sign_up' => 'devise/registrations#new'
+
+  #post 'dashboard' => 'welcome#add_username'
   
-  devise_for :users, controllers: {sessions: 'users/sessions', omniauth_callbacks: 'users/omniauth_callbacks'}
   
-  resources :organizations
+  # resources :organizations
   resources :items
   resources :bids
 
@@ -26,10 +32,7 @@ Rails.application.routes.draw do
     resources :items
   end
 
-  resources :auctions
-  
-  
+  delete 'listings/:id' => 'listings#destroy'
 
-  
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :auctions
 end
