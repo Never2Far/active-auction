@@ -22,8 +22,20 @@ class Listing < ApplicationRecord
         end
     end
 
+    def next_valid_bid
+        if self.current_bid_amount == 0
+            self.starting_bid
+        else
+            self.current_bid_amount + self.bid_increment
+        end
+    end
+
    def reserve_met?
-       (self.current_bid_amount >= self.reserve_price)
+    if self.current_bid
+        self.current_bid_amount >= self.reserve_price ? true : false
+    else
+        false
+    end
    end
 
     def item
