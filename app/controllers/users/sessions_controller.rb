@@ -18,6 +18,7 @@ class Users::SessionsController < Devise::SessionsController
     else
       redirect_to '/'
   end
+end
 
   # DELETE /resource/sign_out
   def destroy
@@ -32,4 +33,5 @@ class Users::SessionsController < Devise::SessionsController
   def configure_sign_in_params
     devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   end
+
 end
