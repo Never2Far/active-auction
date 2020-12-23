@@ -42,8 +42,17 @@ class ListingsController < ApplicationController
                 redirect_to edit_listing_path(@listing)
             end
        
-        
-        redirect_to listing_path(@listing)
+    end
+
+    def destroy
+        @listing = Listing.find_by(id: params[:id])
+        if @listing.bids.any?
+            @listing.bids.each do |bid|
+                bid.destroy
+            end
+        end
+        @listing.destroy
+        redirect_to '/dashboard'
     end
 
 private
