@@ -92,13 +92,15 @@ var x = setInterval(function() {
 <% if current_user == @listing.seller %>
 <br><br>
 
-<form action="/listings/<%=  @listing.id%>/edit" method="get">
-    <input type="submit" value="Edit Listing">
-</form>
+<%= form_tag edit_listing_path(@listing.id), method: "get" do %>
+<input type="submit" value="Edit Listing">
+<% end%>
 
-<form action="/listings/<%=  @listing.id%>" method="delete">
-    <input type="submit" value="Delete Listing">
-</form>
+
+<%= form_tag listing_path(@listing.id), method: "delete" do %>
+<input type="submit" value="Delete Listing">
+<% end%>
+
 <% end%>
 
 <% end%>
