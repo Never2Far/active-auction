@@ -5,24 +5,14 @@ Rails.application.routes.draw do
 
 
   devise_scope :user do
-    #get 'users/sign_up' => 'devise/registrations#new', :as => :registration
-    #get 'sign_up' => 'devise/registrations#new'
-    #post 'users' => 'devise/registrations#create'
     get 'sign_out' => 'devise/sessions#destroy'
     get 'users/sign_out' => 'devise/sessions#destroy'
     get 'sign_in' => 'devise/sessions#new'
-    delete 'sign_out', :to => 'devise/sessions#destroy'#, :as => :destroy_user_session
-    #get 'users/:id' => 'users#show'
+    delete 'sign_out', :to => 'devise/sessions#destroy'
     get 'dashboard' => 'users#dashboard'
   end
 
   resources :users, only: [:show, :edit, :update]
-  # get 'users/sign_up' => 'devise/registrations#new'
-  # get 'sign_up' => 'devise/registrations#new'
-
-  #post 'dashboard' => 'welcome#add_username'
-  
-  
   # resources :organizations
   resources :items
   resources :bids
@@ -31,8 +21,6 @@ Rails.application.routes.draw do
     resources :bids
     resources :items
   end
-
-  delete 'listings/:id' => 'listings#destroy'
 
   resources :auctions
 end
