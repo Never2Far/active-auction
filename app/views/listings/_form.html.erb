@@ -1,4 +1,7 @@
 <%= form_for(@listing) do |f| %>
+
+<%= f.hidden_field :auction_id, :value => @listing.auction_id %>
+
 <%= f.label :title %>
 <%= f.text_field :title %><br><br>
 

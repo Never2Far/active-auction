@@ -4,10 +4,18 @@ class ListingsController < ApplicationController
 
     def new
         @listing = Listing.new
+        if params[:auction_id]
+            @listing.auction_id = params[:auction_id]
+        end
+        @listing
     end
 
     def create
+        auction = Auction.find_by(id: params[:auction_id])
         @listing = Listing.new(listing_params)
+        if auction
+            @listing.auction_id = auction.id
+        end
         @listing.seller_id = current_user.id
         set_end_date(@listing)
 

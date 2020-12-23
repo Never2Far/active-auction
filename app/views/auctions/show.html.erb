@@ -10,5 +10,8 @@
 <p>Admin: <%= @auction.admin.name %></p>
 
 <% if (current_user == @auction.admin) %>
-    <%= link_to "Create New Listing", new_listing_path %>
+
+
+
+    <%= link_to "Create New Listing", new_auction_listing_path(@auction)%>
 <% end%>
