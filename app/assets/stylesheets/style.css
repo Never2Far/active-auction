@@ -39,13 +39,6 @@ body {
   color: red;
 }
 
-#card-wrapper{
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  border: solid black 2px;
-  padding: 5px;
-}
   
 #header {
     position: absolute;
@@ -61,8 +54,8 @@ body {
 
 #banner {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto;
+  margin-right: auto; */
   width: fit-content;
 }
 
@@ -76,6 +69,37 @@ vertical-align: top;
   float: left;
   height: 4rem;
   width: auto;
+}
+
+#navList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #e7e7e7;
+  overflow: hidden;
+  background-color: #f3f3f3;
+  height: 3.9rem;
+}
+
+#navList li {
+  float: left;
+}
+
+#navList li a {
+  display: block;
+  color: #666;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  height: 3.9rem;
+}
+
+#navList li a:hover:not(.active) {
+  background-color: rgb(40, 153, 218);
+}
+
+.active {
+  background-color: #4CAF50;
 }
 
 #navLinks {
