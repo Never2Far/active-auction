@@ -14,21 +14,21 @@
 
 <% if @user.auctions.any? %>
 <h3>Auctions</h3>
-<%= @user.auctions.each do |auction| %>
+<% @user.auctions.each do |auction| %>
 <%= link_to auction.name, auction_path(auction) %><br>
 <% end%>
 <% end%>
 
 <% if @user.listings.any? %>
 <h3>Listings</h3>
-<%= @user.listings.each do |listing| %>
+<% @user.listings.each do |listing| %>
 <%= link_to listing.title, listing_path(listing) %><br>
 <% end%>
 <% end%>
 
 <% if @user.bids.any? %>
 <h3>Bids</h3>
-<%= @user.bids.each do |bid| %>
+<% @user.bids.each do |bid| %>
 <p><%= link_to bid.display, bid_path(bid) %></p>
 <% end%>
 <% end%>

@@ -2,7 +2,7 @@
 
 <% if @auction.listings.any? %>
 <h2>Listings</h2>
-<%= @auction.listings.each do |listing|%>
+<% @auction.listings.each do |listing|%>
 <%= link_to listing.title, listing_path(listing) %>
 <% end%>
 <% end %>

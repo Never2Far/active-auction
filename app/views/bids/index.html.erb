@@ -1,7 +1,7 @@
 <h1>Bids</h1>
 
 
-<%= @bids.each do |bid| %>
+<% @bids.each do |bid| %>
 <p><%= link_to bid.buyer.name, user_path(bid.buyer) %>: $<%= link_to bid.amount, bid_path(bid) %> (<%= link_to bid.listing, listing_path(bid) %>)</p>
 <% end%>
 

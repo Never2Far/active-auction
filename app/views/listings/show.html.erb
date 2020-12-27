@@ -64,7 +64,7 @@ var x = setInterval(function() {
 <h3>Bid History:</h3>
 <p>Starting Bid: <%= number_to_currency(@listing.starting_bid) %></p>
 <ol>
-<%= @listing.bids.each do |bid| %>
+<% @listing.bids.each do |bid| %>
 <li><%= link_to bid.buyer.username, user_path(bid.buyer.id) %>: <%= link_to number_to_currency(bid.amount), bid_path(bid) %> (<%= bid.created_at %>)</li>
 <% end%>
 </ol>
@@ -75,6 +75,7 @@ var x = setInterval(function() {
 
 <% if @listing.active? %>
 <h3>Bid on this item:</h3>
+
 <%= form_for([@listing, @bid]) do |f| %>
 
 <%= f.number_field :amount, step: :any %>
