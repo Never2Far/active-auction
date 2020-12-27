@@ -1,8 +1,11 @@
 class Listing < ApplicationRecord
+    scope :active, -> {where(active: true)}
     belongs_to :seller, class_name: 'User', foreign_key: 'seller_id'
     has_and_belongs_to_many :items
     has_many :bids
     belongs_to :auction
+
+    validates :title, :description, :start_time, :start_date, :duration, presence: true
 
 
     def active?

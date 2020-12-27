@@ -6,6 +6,12 @@ class User < ApplicationRecord
 
   devise :omniauthable, omniauth_providers: [:google, :facebook]
 
+  validates :email, presence: true
+  validates :email, :username, uniqueness: { case_sensitive: false }
+
+
+
+
         #  has_many :organizations, inverse_of: 'admin'
          has_many :auctions, inverse_of: 'admin'
          has_many :listings, inverse_of: 'seller'
