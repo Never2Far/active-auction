@@ -37,6 +37,10 @@ class ListingsController < ApplicationController
 
     def edit
         @listing = Listing.find_by(id: params[:id])
+        if @listing.bids.any?
+            flash[:alert] = "A listing cannot be edited once it has been bid on."
+            redirect_to listing_path(@listing)
+        end
     end
 
     def update
