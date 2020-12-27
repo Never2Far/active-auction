@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   resources :items
   resources :bids
 
+  resources :auctions do
+resources :listings, only: [:new, :create, :index]
+  end
   resources :listings, shallow: true do
     resources :bids
     resources :items
