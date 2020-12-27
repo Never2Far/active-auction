@@ -13,7 +13,7 @@ class Bid < ApplicationRecord
             errors << "You cannot bid on your own listing!"
         # elsif (self.amount <= self.listing.current_bid_amount)
         # errors << "Invalid bid: Please enter a bid greater than the listing\'s current bid"
-        else (self.amount < (self.listing.next_valid_bid))
+        elsif (self.amount < (self.listing.next_valid_bid))
             errors << "Invalid bid: Please enter a bid of #{number_to_currency(self.listing.next_valid_bid)} or more"
         end
         if errors.any?
@@ -28,7 +28,7 @@ class Bid < ApplicationRecord
 
 
     def display
-        "#{self.listing.title}, Bid: $#{self.amount}"
+        "#{self.listing.title}, Bid: #{number_to_currency(self.amount)} (#{self.buyer.username})"
     end
 
 
