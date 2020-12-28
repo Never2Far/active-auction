@@ -34,10 +34,17 @@ body {
     padding-bottom: 2rem;   
 }
 
-#flash-wrap p {
+.notice {
+  font-size: 1.5rem;
+  color: rgb(22, 141, 32);
+}
+
+.alert {
   font-size: 1.5rem;
   color: red;
 }
+
+
 
   
 #header {
