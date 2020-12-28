@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
