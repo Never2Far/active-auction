@@ -22,14 +22,20 @@ class Bid < ApplicationRecord
             return false
         end
     end
-    
-    
 
-
-
-    def display
-        "#{self.listing.title}, Bid: #{number_to_currency(self.amount)} (#{self.buyer.username})"
+    def dashboard_display
+        if self.listing.current_bid == self
+            if self.listing.active?
+            "(Active) - You are the highest bidder! - Current Bid: #{number_to_currency(self.listing.current_bid_amount)}"    
+            else
+            "(Ended) - You have Won! - Final Bid: #{number_to_currency(self.listing.current_bid_amount)}"    
+            end
+        else
+            if self.listing.active?
+            "(Active) - You have been out-bid! - Current Bid: #{number_to_currency(self.listing.current_bid_amount)}"    
+            else
+            "(Ended) - You did not win - Final Bid: #{number_to_currency(self.listing.current_bid_amount)}"    
+            end
+        end
     end
-
-
 end
