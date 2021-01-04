@@ -5,14 +5,22 @@ class Listing < ApplicationRecord
     has_many :bids
     belongs_to :auction
 
-    validates :title, :description, :start_time, :start_date, :duration, presence: true
-    validates :duration, numericality: {only_integer: true}
-    validates :title, length: {in: 3..50}
-    validates :starting_bid, :reserve_price
+    # validates :title, :description, :start_time, :start_date, :duration, presence: true
+    # validates :duration, numericality: {only_integer: true}
+    # validates :title, length: {in: 3..50}
+    # validates :starting_bid, :reserve_price, prese
 
 
     def active?
         DateTime.now.between?(self.start_date, self.end_date)
+    end
+
+    def status
+        if self.active?
+            return "Active"
+        else
+            return "Ended"
+        end
     end
 
 
@@ -47,8 +55,4 @@ class Listing < ApplicationRecord
     def item
         self.items.first
     end
-
-    # def auction
-    #     Auction.find_by(id: self.auction_id)
-    # end
 end
