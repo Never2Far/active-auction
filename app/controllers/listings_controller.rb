@@ -23,7 +23,7 @@ class ListingsController < ApplicationController
             redirect_to listing_path(@listing)
         else
 
-        flash[:alert] = "Something went wrong, please check information and try again."
+        # flash[:alert] = "Something went wrong, please check information and try again."
 
         redirect_to new_listing_path
         end
@@ -59,12 +59,12 @@ class ListingsController < ApplicationController
     def destroy
         @listing = Listing.find_by(id: params[:id])
         if @listing.bids.any?
-            @listing.bids.each do |bid|
-                bid.destroy
-            end
-        end
+            flash[:alert] = "A listing cannot be edited once it has been bid on."
+            redirect_to listing_path(@listing)
+        else
         @listing.destroy
         redirect_to '/dashboard'
+        end
     end
 
 private
