@@ -2,7 +2,7 @@
 
 class Users::SessionsController < Devise::SessionsController
   protect_from_forgery
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:new, :create]
   before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -11,14 +11,14 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  def create
-    super
-    if user_signed_in?
-    redirect_to '/dashboard'
-    else
-      redirect_to '/'
-  end
-end
+  # def create
+  #   super
+  #   if user_signed_in?
+  #   redirect_to '/dashboard'
+  #   else
+  #     redirect_to '/'
+  # end
+# end
 
   # DELETE /resource/sign_out
   def destroy
