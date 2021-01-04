@@ -2,15 +2,10 @@
 
 
 <% unless @user.username == nil || @user.username == ""%>
-<h1><%= @user.name %>'s Dashboard</h1>
-<h1><%= @user.username %></h1>
 
-<h1><%= @user.id %></h1>
+<h1><%= @user.username %>'<%= @user.username[-1].downcase == "s" ? "" : "s" %> Dashboard</h1>
 
-<p><%= @user.name %></p>
-
-
-<p><%= @user.email %></p>
+<p>Name: <%= @user.name %>, Email: <%= @user.email %></p>
 
 <% if @user.auctions.any? %>
 <h3>Auctions</h3>
@@ -19,17 +14,19 @@
 <% end%>
 <% end%>
 
-<% if @user.listings.any? %>
-<h3>Listings</h3>
-<% @user.listings.each do |listing| %>
-<%= link_to listing.title, listing_path(listing) %><br>
+<% if @user.bids.any? %>
+<h3>Listings (Buyer)</h3>
+<ul>
+<% @user.bids.each do |bid| %>
+<li><%= link_to bid.listing.title, listing_path(bid.listing) %><%= bid.dashboard_display %></li>
 <% end%>
+</ul>
 <% end%>
 
-<% if @user.bids.any? %>
-<h3>Bids</h3>
-<% @user.bids.each do |bid| %>
-<p><%= link_to bid.display, bid_path(bid) %></p>
+<% if @user.listings.any? %>
+<h3>Listings (Seller)</h3>
+<% @user.listings.each do |listing| %>
+<%= link_to listing.title, listing_path(listing) %><br>
 <% end%>
 <% end%>
 
