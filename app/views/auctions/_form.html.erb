@@ -2,6 +2,15 @@
 <%= f.label :name %>
 <%= f.text_field :name %><br><br>
 
+<%= f.label :organization_name %>
+<%= f.text_field :organization_name %><br><br>
+
+<%= f.label :required_contribution, "Required Contribution (Percentage of proceeds from each listing to be contributed to auction):" %><br>
+<%= f.number_field :required_contribution %>
+
+<%# f.label :authorized_sellers, "Sellers that can add listings to this auction:" %>
+<%# f.collection_check_boxes :authorized_sellers, User.all, :id, :username %>
+
 <%= f.label :start_date %>
 <%= f.date_field :start_date, {min: Date.today, order: [:month, :day, :year]} %><br><br>
 
