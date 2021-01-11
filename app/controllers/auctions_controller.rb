@@ -49,7 +49,7 @@ class AuctionsController < ApplicationController
     def auction_params
         params.require(:auction).permit(:name, :organization, :private, :type,
                                      :start_time, :end_time, :start_date, :end_date,
-                                    :duration, :admin_id)
+                                    :duration, :admin_id, :organization_name, :required_contribution, :authorized_sellers, :active)
     end
 
     def set_end_date(auction)
