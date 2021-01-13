@@ -12,7 +12,17 @@ class Auction < ApplicationRecord
     # has_many :users, through: :buyers, source: :bids
     # has_many :auction_sellers
     # has_many :sellers, through: :authorized_sellers, class_name: 'User'
+    def active
+        DateTime.now.between?(self.start_date, self.end_date)
+    end
 
+    def status
+        if self.active?
+            return "Active"
+        else
+            return "Ended"
+        end
+    end
 
     def admin
         User.find(self.admin_id)

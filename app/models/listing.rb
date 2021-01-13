@@ -1,7 +1,7 @@
 class Listing < ApplicationRecord
     scope :active, -> {where(active: true)}
+        
     belongs_to :seller, class_name: 'User', foreign_key: 'seller_id'
-    has_and_belongs_to_many :items
     has_many :bids
     belongs_to :auction
 
@@ -19,7 +19,19 @@ class Listing < ApplicationRecord
         if self.active?
             return "Active"
         else
-            return "Ended"
+            if DateTime.now < self.start_date #&& self.draft?
+            return "Not Started"
+            else  
+                return self.outcome
+            end
+        end
+    end
+
+    def outcome
+        if self.reserve_met?
+             return "Ended--Final Bid: #{number_to_currency(self.current_bid_amount)} by #{self.current_bid.buyer.username}"
+        else
+            return "Ended--Reserve Not Met"
         end
     end
 
