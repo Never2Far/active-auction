@@ -77,12 +77,12 @@ def listing_params
         :bid_increment, :auction_id)
 end
 
-def set_end_date(listing)
-    t = listing.start_time
-    d = listing.start_date
-    listing.start_date = DateTime.new(d.year, d.month, d.day, t.hour, t.min)
-    listing.end_date = (listing.start_date + listing.duration.days).strftime("%b %-d, %Y %H:%M")
-end
+# def set_end_date(listing)
+#     t = listing.start_time
+#     d = listing.start_date
+#     listing.start_date = DateTime.new(d.year, d.month, d.day, t.hour, t.min)
+#     listing.end_date = (listing.start_date + listing.duration.days).strftime("%b %-d, %Y %H:%M")
+# end
 
 def check_for_cancel
     if params[:commit] == "Cancel"
