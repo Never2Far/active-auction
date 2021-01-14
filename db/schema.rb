@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_11_193103) do
+ActiveRecord::Schema.define(version: 2021_01_13_202027) do
 
   create_table "auctions", force: :cascade do |t|
     t.string "name"
@@ -76,6 +76,18 @@ ActiveRecord::Schema.define(version: 2021_01_11_193103) do
     t.boolean "active?"
     t.string "status"
     t.integer "duration"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string "question_text"
+    t.string "answer"
+    t.integer "listing_id"
+    t.integer "buyer_id"
+    t.boolean "read_by_seller"
+    t.boolean "answered"
+    t.boolean "private"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
