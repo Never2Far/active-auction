@@ -4,6 +4,7 @@ class Listing < ApplicationRecord
     belongs_to :seller, class_name: 'User', foreign_key: 'seller_id'
     has_many :bids
     belongs_to :auction
+    has_many :questions
 
     # validates :title, :description, :start_time, :start_date, :duration, presence: true
     # validates :duration, numericality: {only_integer: true}

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  # scope :sellers, -> {where}
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -17,6 +18,8 @@ class User < ApplicationRecord
          has_many :auctions, inverse_of: 'admin'
          has_many :listings, inverse_of: 'seller'
          has_many :bids, inverse_of: 'buyer'
+         has_many :questions, inverse_of: 'buyer'
+        #  has_many :questions, inverse_of: 'seller'
 
 
          def auctions
