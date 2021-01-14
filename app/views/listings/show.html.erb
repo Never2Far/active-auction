@@ -15,11 +15,7 @@
 <% if @listing.active? && (current_user == @listing.current_bid.buyer) %>
 <h3>You are currently the highest bidder!</h3>
 <p>Your Bid: <%= number_to_currency(@listing.current_bid_amount) %></p><br>
-<!--<form action="/bids/<%= @listing.current_bid.id %>/edit" method="post">
-<label for="new_max_bid">$</label>
-<input type="number" name="bid[new_max_bid]" id="new_max_bid" value="<%= @listing.current_bid.max_bid %>">
-    <input type="submit" value="Change Max Bid">
-</form>-->
+<% end%>
 <% end%>
 
 
@@ -33,8 +29,6 @@
 <br><br>
 
 
-<% end%>
-
 <% if @listing.active? %>
 <h3>Bid on this item:</h3>
 
@@ -46,12 +40,29 @@
 <%# f.number_field :max_bid, step: :any  %>
 
 <%= f.submit %> <span>(Please enter a bid of <%= number_to_currency(@listing.next_valid_bid) %> or more)</span>
-
+<% end%>
 <% end%><br>
 
 
 <h3><%= render 'countdown' %></h3>
 
+
+
+<h3>Questions</h3>
+<%= form_for([@listing, @question]) do |f| %>
+
+<%= f.label :question_text, "Ask the seller a question:" %><br>
+<%= f.text_area :question_text %>
+
+<%= f.submit "Submit Question"%>
+<% end%>
+<% if @listing.questions.any? %>
+<ul id="q-and-a">
+<% @listing.questions.each do |q|%>
+<li><%= q.buyer.username%> asked:  <%= q.question_text %><br>   A: <%= q.answer %></li><br>
+<% end%>
+</ul>
+<% end%>
 
 
 <% if current_user == @listing.seller %>
@@ -68,4 +79,3 @@
 
 <% end%>
 
-<% end%>

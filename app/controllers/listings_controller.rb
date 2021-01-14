@@ -32,6 +32,7 @@ class ListingsController < ApplicationController
     def show
         @listing = Listing.find_by(id: params[:id])
         @bid = Bid.new(listing_id: params[:id])
+        @question = Question.new(listing_id: params[:id], buyer_id: current_user.id )
         render 'listings/show'
     end
 
