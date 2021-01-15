@@ -1,0 +1,7 @@
+<h1>Questions</h1>
+
+<% @questions.each do |q| %>
+
+<%= link_to q.question_text, question_path(q) %><br>
+
+<% end%>
