@@ -4,7 +4,7 @@ class Auction < ApplicationRecord
     belongs_to :admin, class_name: 'User', foreign_key: 'admin_id'
     # has_many :items, through: :listings
     has_many :bids, through: :listings
-    has_many :questions, through: : listings
+    has_many :questions, through: :listings
 
     
     has_many :buyers, through: :bids
