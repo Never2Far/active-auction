@@ -1,0 +1,27 @@
+<h1>Buyer Question (<%= @question.status %>)</h1>
+<h2>Listing: <%= link_to @question.listing.title, listing_path(@question.listing) %></h2>
+
+<h3><%= link_to @question.buyer.username, user_path(@question.buyer) %> asked:</h3>
+<p><%= @question.question_text %></p>
+<% if @question.answer %>
+<ul>
+<li><%= @question.answer %></li>
+</ul>
+<%= form_for(@question) do |f| %>
+
+<%= f.text_area :answer %>
+<%= f.submit "Edit Answer" %>
+<% end%>
+
+<% else %>
+
+
+<%= form_for(@question) do |f| %>
+
+<%= f.text_area :answer %>
+<%= f.submit "Submit Answer" %>
+<% end%>
+
+<% end%>
+
+<%# if%>
