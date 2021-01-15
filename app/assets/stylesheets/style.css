@@ -163,3 +163,39 @@ vertical-align: top;
     column-width: 32%;
     column-gap: normal;
   }
+
+  #q-and-a {
+    list-style-position: outside;
+  }
+
+  .row {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  .column {
+    flex: 50%;
+  }
+
+  #seller {
+    border-right-color:  rgb(190, 190, 190);
+    border-right-width: 10px;
+    border-right-style: solid;
+
+    border-top-color:  rgb(190, 190, 190);
+    border-top-width: 10px;
+    border-top-style: solid;
+    
+  }
+
+  #buyer {
+    padding-left: 3px;
+    border-top-color:  rgb(190, 190, 190);
+    border-top-width: 10px;
+    border-top-style: solid;
+  }
+
+  #seller h2, #buyer h2 {
+    text-align: center;
+    text-decoration: underline;
+  }
