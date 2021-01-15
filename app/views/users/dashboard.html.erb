@@ -7,27 +7,29 @@
 
 <p>Name: <%= @user.name %>, Email: <%= @user.email %></p>
 
+
+<div class="row">
+
+<div class="column" id="seller">
+<h2>Seller</h2>
 <% if @user.auctions.any? %>
 <h3>Auctions</h3>
-<% @user.auctions.each do |auction| %>
-<%= link_to auction.name, auction_path(auction) %><br>
-<% end%>
-<% end%>
-
-<% if @user.bids.any? %>
-<h3>Listings (Buyer)</h3>
 <ul>
-<% @user.bids.each do |bid| %>
-<li><%= link_to bid.listing.title, listing_path(bid.listing) %><%= bid.dashboard_display %></li>
+<% @user.auctions.each do |auction| %>
+<li><%= link_to auction.name, auction_path(auction) %></li>
 <% end%>
 </ul>
 <% end%>
 
+
 <% if @user.listings.any? %>
-<h3>Listings (Seller)</h3>
+<h3>Listings</h3>
+<ul>
 <% @user.listings.each do |listing| %>
-<%= link_to listing.title, listing_path(listing) %><br>
+<li><%= link_to listing.title, listing_path(listing) %> <%if  listing.questions.unanswered.any?  %>-- (You have <%= link_to listing.questions.unanswered.count, question_path(listing.questions.unanswered.first) %> unanswered questions!)
+<% end%></li>
 <% end%>
+</ul>
 <% end%>
 
 <%# if @user.items.any? %>
@@ -44,6 +46,19 @@
 <form action="/listings/new" method="get">
     <input type="submit" value="Create Listing">
 </form><br><br>
+</div>
+<div class="column" id="buyer">
+<h2>Buyer</h2>
+<% if @user.bids.any? %>
+<h3>Listings (Buyer)</h3>
+<ul>
+<% @user.bids.each do |bid| %>
+<li><%= link_to bid.listing.title, listing_path(bid.listing) %><%= bid.dashboard_display %></li>
+<% end%>
+</ul>
+<% end%>
+</div>
+</div>
 
 <% else%>
 <h2>Please create a username to continue (this is what will be visible to other users)</h2>
