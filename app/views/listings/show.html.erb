@@ -49,6 +49,7 @@
 
 
 <h3>Questions</h3>
+<% unless current_user == @listing.seller %>
 <%= form_for([@listing, @question]) do |f| %>
 
 <%= f.label :question_text, "Ask the seller a question:" %><br>
@@ -56,10 +57,11 @@
 
 <%= f.submit "Submit Question"%>
 <% end%>
+<% end%>
 <% if @listing.questions.any? %>
 <ul id="q-and-a">
 <% @listing.questions.each do |q|%>
-<li><%= q.buyer.username%> asked:  <%= q.question_text %><br>   A: <%= q.answer %></li><br>
+<li><%= q.buyer.username%> asked:  <%= q.question_text %><br>   Seller answered: <%= q.answer %></li><br>
 <% end%>
 </ul>
 <% end%>
