@@ -17,7 +17,7 @@ class CreateListings < ActiveRecord::Migration[6.0]
       t.string :item_condition
       t.integer :item_qty
       t.integer :lot_size
-      t.boolean :active?
+      t.boolean :active
       t.string :status
       t.integer :duration
       t.timestamps
