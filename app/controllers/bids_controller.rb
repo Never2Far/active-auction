@@ -3,7 +3,12 @@ class BidsController < ApplicationController
 
 
 def index
-    @bids = Bid.all
+    if params[:listing_id]
+        @listing = Listing.find_by(id: params[:listing_id])
+        @bids = @listing.bids
+    else
+@bids = Bid.all
+    end
 end
 
 def show
