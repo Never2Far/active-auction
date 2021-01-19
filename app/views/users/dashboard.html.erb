@@ -5,7 +5,8 @@
 
 <h1><%= @user.username %>'<%= @user.username[-1].downcase == "s" ? "" : "s" %> Dashboard</h1>
 
-<p>Name: <%= @user.name %>, Email: <%= @user.email %></p>
+<p>Name: <%= @user.name %> 
+<br>Email: <%= @user.email %></p>
 
 
 <div class="row">
@@ -52,8 +53,20 @@
 <% if @user.bids.any? %>
 <h3>Listings (Buyer)</h3>
 <ul>
-<% @user.bids.each do |bid| %>
+<% @user.bids.uniq {|bid| bid.listing}.each do |bid| %>
 <li><%= link_to bid.listing.title, listing_path(bid.listing) %><%= bid.dashboard_display %></li>
+<% end%>
+</ul>
+<% end%>
+
+
+<% if @user.questions.any? %>
+<h3>Questions</h3>
+<ul>
+<% @user.questions.each do |question| %>
+<% unless question.listing.active = false %>
+<li><%= link_to question.listing.title, listing_path(question.listing) %>--<%= question.answer ? "Your question has been answered!" : "Your question has not been answered yet."%></li>
+<% end%>
 <% end%>
 </ul>
 <% end%>
