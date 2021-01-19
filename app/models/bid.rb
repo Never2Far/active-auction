@@ -24,7 +24,7 @@ class Bid < ApplicationRecord
     end
 
     def dashboard_display
-        if self.listing.current_bid == self
+        if self.listing.current_bid == self || self.listing.current_bid.buyer == self.buyer
             if self.listing.active?
             "(Active) - You are the highest bidder! - Current Bid: #{number_to_currency(self.listing.current_bid_amount)}"    
             else
