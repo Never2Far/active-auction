@@ -18,7 +18,7 @@ class ListingsController < ApplicationController
         end
         @listing.seller_id = current_user.id
         set_end_date(@listing)
-
+        @listing.active? ? @listing.active = true : @listing.active = false 
         if @listing.save
             redirect_to listing_path(@listing)
         else
