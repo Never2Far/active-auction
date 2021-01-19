@@ -2,6 +2,9 @@ class User < ApplicationRecord
   # scope :sellers, -> {where}
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
+
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -30,6 +33,16 @@ class User < ApplicationRecord
               end
             end
             auctions
+          end
+
+          def questions
+            questions = []
+            Question.all.each do |question|
+              if question.buyer == self
+                questions << question
+              end
+            end
+            questions
           end
 
           # def items
