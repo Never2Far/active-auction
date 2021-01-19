@@ -1,14 +1,19 @@
+<div class="section">
 <h1><%= @listing.title %> (Status: <%= @listing.status %>)</h1>
-
+<h2>Seller: <%= @listing.seller.username %></h2> 
 <p><%= @listing.description %></p>
 
-<h4>Starting Bid: <%= number_to_currency(@listing.starting_bid) %></h4>
+<!--<h4>Starting Bid: <%= number_to_currency(@listing.starting_bid) %></h4>-->
 <h4>Current Bid: <%=number_to_currency(@listing.current_bid_amount)%> 
   <% unless @listing.reserve_met? %>
   (Reserve not met)
   <% end%>
-  </h4><br>
-
+  </h4>
+  <% if @listing.active? %>
+  <h3><%= render 'countdown' %></h3>
+  <% end%>
+</div>
+<div class="section">
 <% if @listing.bids.any? %>
 
 
@@ -29,7 +34,7 @@
 <br><br>
 
 
-<% if @listing.active? %>
+<% if @listing.active? && (current_user != @listing.seller) %>
 <h3>Bid on this item:</h3>
 
 <%= form_for([@listing, @bid]) do |f| %>
@@ -44,10 +49,10 @@
 <% end%><br>
 
 
-<h3><%= render 'countdown' %></h3>
 
+</div>
 
-
+<div class="section">
 <h3>Questions</h3>
 <% unless current_user == @listing.seller %>
 <%= form_for([@listing, @question]) do |f| %>
@@ -66,7 +71,7 @@
 </ul>
 <% end%>
 
-
+</div>
 <% if current_user == @listing.seller %>
 <br><br>
 

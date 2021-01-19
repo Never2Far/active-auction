@@ -50,13 +50,14 @@ body {
 #header {
     position: absolute;
     top: 0;
-    width: 900px;
+    width: 920px;
     height: 4rem; 
-    border-top-style: solid;
+    /* border-top-style: solid; */
     border-bottom-style: solid;
-    border-top-color: black;
+    /* border-top-color: black; */
     border-bottom-color: black;
     border-width: 5px;
+    margin-left: -10px;
 }
 
 #banner {
@@ -198,4 +199,10 @@ vertical-align: top;
   #seller h2, #buyer h2 {
     text-align: center;
     text-decoration: underline;
+  }
+
+  .section {
+    border-bottom-color:  rgb(190, 190, 190);
+    border-bottom-width: 4px;
+    border-bottom-style: solid;
   }
