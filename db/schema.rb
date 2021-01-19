@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2021_01_13_202027) do
     t.string "item_condition"
     t.integer "item_qty"
     t.integer "lot_size"
-    t.boolean "active?"
+    t.boolean "active"
     t.string "status"
     t.integer "duration"
     t.datetime "created_at", precision: 6, null: false
