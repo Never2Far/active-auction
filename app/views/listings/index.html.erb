@@ -1,7 +1,7 @@
 <h1>Listings</h1>
 
 <ul>
-<% Listing.all.each do |listing| %>
+<% Listing.active.each do |listing| %>
 <li><%= link_to listing.title, listing_path(listing) %></li>
 <% end%>
 </ul>
