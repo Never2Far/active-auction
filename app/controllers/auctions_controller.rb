@@ -44,6 +44,20 @@ class AuctionsController < ApplicationController
         end
     end
 
+    def destroy
+        @auction = Auction.find_by(id: params[:id])
+        if @auction.bids.any?
+            flash[:alert] = "An auction cannot be edited once a listing has been bid on."
+            redirect_to auction_path(@auction)
+        else
+            @auction.listings.each do |listing|
+                listing.destroy
+            end
+        @auction.destroy
+        redirect_to '/dashboard'
+        end
+    end
+
     private
 
     def auction_params
