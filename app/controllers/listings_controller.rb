@@ -68,6 +68,15 @@ class ListingsController < ApplicationController
         end
     end
 
+    def index
+    @listings = Listing.all
+    end
+
+    def index_active
+        @listings = Listing.active
+        render 'listings/index'
+    end
+
 private
 
 def listing_params
