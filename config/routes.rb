@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :items
   resources :bids
   resources :questions
-
+  get 'listings/active' => 'listings#index_active'
   resources :auctions do
 resources :listings, only: [:new, :create, :index, :show]
   end
