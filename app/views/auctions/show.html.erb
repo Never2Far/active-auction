@@ -1,17 +1,36 @@
+<div class="section">
 <h1><%= @auction.name %></h1>
+<p>Admin: <%= @auction.admin.name %><br>
+<%= @auction.required_contribution %>% of proceeds go to <%= @auction.organization_name %>.</p>
+</div>
 
 <% if @auction.listings.any? %>
 <h2>Listings</h2>
 <% @auction.listings.each do |listing|%>
 <%= link_to listing.title, listing_path(listing) %>
 <% end%>
-<% end %>
+<% end %><br><br>
 
-<p>Admin: <%= @auction.admin.name %></p>
+
 
 <% if (current_user == @auction.admin) %>
 
 
 
-    <%= link_to "Create New Listing", new_auction_listing_path(@auction)%>
+
+
+    <%= form_tag new_auction_listing_path(@auction), method: "get" do %>
+<input type="submit" value="Add New Listing">
+<% end%>
+
+
+    <%= form_tag edit_auction_path(@auction.id), method: "get" do %>
+<input type="submit" value="Edit Auction">
+<% end%>
+
+
+<%= form_tag auction_path(@auction.id), method: "delete" do %>
+<input type="submit" value="Delete Auction">
+<% end%>
+
 <% end%>
