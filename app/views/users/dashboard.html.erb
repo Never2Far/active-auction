@@ -1,6 +1,3 @@
-
-
-
 <% unless @user.username == nil || @user.username == ""%>
 
 <h1><%= @user.username %>'<%= @user.username[-1].downcase == "s" ? "" : "s" %> Dashboard</h1>
@@ -33,12 +30,6 @@
 </ul>
 <% end%>
 
-<%# if @user.items.any? %>
-<!--<h3>Inventory</h3>-->
-<%# @user.items.each do |item| %>
-<%# link_to item.name, item_path(item) %>
-<%# end%>
-<%# end%>
 
 <br><br>
 <form action="/auctions/new" method="get">
@@ -58,7 +49,6 @@
 <% end%>
 </ul>
 <% end%>
-
 
 <% if @user.questions.any? %>
 <h3>Questions</h3>

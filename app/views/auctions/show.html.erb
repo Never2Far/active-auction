@@ -12,12 +12,7 @@
 <% end %><br><br>
 
 
-
 <% if (current_user == @auction.admin) %>
-
-
-
-
 
     <%= form_tag new_auction_listing_path(@auction), method: "get" do %>
 <input type="submit" value="Add New Listing">

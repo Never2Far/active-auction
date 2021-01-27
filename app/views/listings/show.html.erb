@@ -3,7 +3,6 @@
 <h2>Seller: <%= @listing.seller.username %></h2> 
 <p><%= @listing.description %></p>
 
-<!--<h4>Starting Bid: <%= number_to_currency(@listing.starting_bid) %></h4>-->
 <h4>Current Bid: <%=number_to_currency(@listing.current_bid_amount)%> 
   <% unless @listing.reserve_met? %>
   (Reserve not met)
@@ -40,9 +39,6 @@
 <%= form_for([@listing, @bid]) do |f| %>
 
 <%= f.number_field :amount, step: :any %>
-
-<%# f.label :max_bid %>
-<%# f.number_field :max_bid, step: :any  %>
 
 <%= f.submit %> <span>(Please enter a bid of <%= number_to_currency(@listing.next_valid_bid) %> or more)</span>
 <% end%>
