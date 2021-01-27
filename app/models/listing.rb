@@ -1,5 +1,6 @@
 class Listing < ApplicationRecord
-    scope :active, -> {where(active: true)}
+    scope :active, -> {where("start_date < ?", Time.now).where("end_date > ?", Time.now)}
+
         
     belongs_to :seller, class_name: 'User', foreign_key: 'seller_id'
     has_many :bids
@@ -11,6 +12,14 @@ class Listing < ApplicationRecord
     # validates :title, length: {in: 3..50}
     # validates :starting_bid, :reserve_price, prese
 
+    def update_status
+        if self.active? 
+            self.active = true  
+        else 
+            self.active = false
+        end
+        self.save!
+    end
 
     def active?
         DateTime.now.between?(self.start_date, self.end_date)
