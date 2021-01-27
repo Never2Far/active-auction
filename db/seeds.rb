@@ -31,6 +31,17 @@ end
 
 # Faker::Name.unique.clear
 
+def set_end_date(auctionOrListing) #accepts instances of Auction or Listing
+    t = auctionOrListing.start_time
+    d = auctionOrListing.start_date
+    auctionOrListing.start_date = DateTime.new(d.year, d.month, d.day, t.hour, t.min)
+    auctionOrListing.end_date = (auctionOrListing.start_date + auctionOrListing.duration.days).strftime("%b %-d, %Y %H:%M")
+  end
+
+
+
+
+
 #create listings
 User.all.each do |user|
 5.times do
@@ -47,7 +58,7 @@ User.all.each do |user|
     listing.start_date = start_date
     listing.start_time = DateTime.now
     listing.duration = duration
-    listing.end_date = start_date + duration
+    listing.end_date = set_end_date(listing)
     if DateTime.now.between?(listing.start_date, listing.end_date)
         listing.active = true
     else
