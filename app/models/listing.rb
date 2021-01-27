@@ -7,10 +7,11 @@ class Listing < ApplicationRecord
     belongs_to :auction
     has_many :questions
 
-    # validates :title, :description, :start_time, :start_date, :duration, presence: true
-    # validates :duration, numericality: {only_integer: true}
-    # validates :title, length: {in: 3..50}
-    # validates :starting_bid, :reserve_price, prese
+    validates :title, presence: :true
+    # :description, :start_time, :start_date, :duration, presence: true
+    validates :duration, numericality: {only_integer: true}
+    validates :title, length: {in: 3..50}
+    validates :starting_bid, :reserve_price, presence: true
 
     def update_status
         if self.active? 
