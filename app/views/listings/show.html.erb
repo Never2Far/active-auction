@@ -18,7 +18,7 @@
 
 
 <% if @listing.active? && (current_user == @listing.current_bid.buyer) %>
-<h3>You are currently the highest bidder!</h3>
+<h3 class="high-bidder-notice">You are currently the highest bidder!</h3>
 <p>Your Bid: <%= number_to_currency(@listing.current_bid_amount) %></p><br>
 <% end%>
 <% end%>
