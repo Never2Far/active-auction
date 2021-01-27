@@ -66,13 +66,6 @@ class AuctionsController < ApplicationController
                                     :duration, :admin_id, :organization_name, :required_contribution, :authorized_sellers, :active)
     end
 
-    # def set_end_date(auction)
-    #     t = auction.start_time
-    #     d = auction.start_date
-    #     auction.start_date = DateTime.new(d.year, d.month, d.day, t.hour, t.min)
-    #     auction.end_date = (auction.start_date + auction.duration.days).strftime("%b %-d, %Y %H:%M")
-    # end
-
     def check_for_cancel
         if params[:commit] == "Cancel"
           redirect_to '/dashboard'

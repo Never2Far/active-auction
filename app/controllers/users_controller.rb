@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-# before_action :set_user, only: [:show]
 
 
     def show
@@ -21,7 +20,6 @@ class UsersController < ApplicationController
         @user = User.find_by(id: params[:id])
 
         @user.update(username: user_params[:username])
-        # @user.username = user_params[:username]
         redirect_to '/dashboard'
     end
 

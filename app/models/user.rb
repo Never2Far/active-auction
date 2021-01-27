@@ -1,9 +1,4 @@
 class User < ApplicationRecord
-  # scope :sellers, -> {where}
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-
-
 
   devise :database_authenticatable, :registerable,
    :rememberable, :validatable
@@ -15,14 +10,10 @@ class User < ApplicationRecord
   # validates :username, length: {minimum: 3}
 
 
-
-
-        #  has_many :organizations, inverse_of: 'admin'
-         has_many :auctions, inverse_of: 'admin'
-         has_many :listings, inverse_of: 'seller'
-         has_many :bids, inverse_of: 'buyer'
-         has_many :questions, inverse_of: 'buyer'
-        #  has_many :questions, inverse_of: 'seller'
+  has_many :auctions, inverse_of: 'admin'
+  has_many :listings, inverse_of: 'seller'
+  has_many :bids, inverse_of: 'buyer'
+  has_many :questions, inverse_of: 'buyer'
 
 
          def auctions
@@ -45,16 +36,6 @@ class User < ApplicationRecord
             questions
           end
 
-          # def items
-          #   items = []
-          #   self.listings.each do |listing|
-          #     if listing.seller == self
-          #       items << listing.item
-          #     end
-          #   end
-          #   items
-          # end
-         
           def bids
             bids = []
             Bid.all.each do |bid|
@@ -76,12 +57,10 @@ class User < ApplicationRecord
           end
 
 
-
          def self.from_omniauth(access_token)
           data = access_token.info
           user = User.where(email: data['email']).first
       
-          #Uncomment the section below if you want users to be created if they don't exist
           unless user
               user = User.create(name: data['name'],
                  email: data['email'],

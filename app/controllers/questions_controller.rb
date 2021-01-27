@@ -7,12 +7,10 @@ def index
         @listing = Listing.find_by(id: params[:listing_id])
         @questions = @listing.questions
     else
-@questions = Question.all
+        @questions = Question.all
     end
 end
-# def new
-#     @question = Question.new
-# end
+
 
     def create
         @question = Question.new(question_params)
@@ -20,11 +18,6 @@ end
         @question.listing = @listing
         @question.buyer = current_user
         @question.answered = false
-
-        # if @question.errors?
-        #     flash[:alert] = @question.errors?.first
-        #     redirect_to listing_path(@listing) and return
-        # end
         
             unless !@question.save
                 redirect_to listing_path(@listing)

@@ -23,7 +23,7 @@ class ListingsController < ApplicationController
             redirect_to listing_path(@listing)
         else
 
-        # flash[:alert] = "Something went wrong, please check information and try again."
+        flash[:alert] = "Something went wrong, please check information and try again."
 
         redirect_to new_listing_path
         end
@@ -86,13 +86,6 @@ def listing_params
         :item_qty, :lot_size, :active, :duration, :starting_bid,
         :bid_increment, :auction_id)
 end
-
-# def set_end_date(listing)
-#     t = listing.start_time
-#     d = listing.start_date
-#     listing.start_date = DateTime.new(d.year, d.month, d.day, t.hour, t.min)
-#     listing.end_date = (listing.start_date + listing.duration.days).strftime("%b %-d, %Y %H:%M")
-# end
 
 def check_for_cancel
     if params[:commit] == "Cancel"
