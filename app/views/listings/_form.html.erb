@@ -18,13 +18,13 @@
 <%= f.number_field :bid_increment %><br><br>
 
 <%= f.label :start_date %>
-<%= f.date_field :start_date, {min: Date.today, order: [:month, :day, :year],  required: true} %><br><br>
+<%= f.date_field :start_date, {min: Date.today, order: [:month, :day, :year]} %><br><br>
 
 <%= f.label :start_time, "Start Time: " %>
-<%= f.time_field :start_time, {step: 60, required: true}  %><br><br>
+<%= f.time_field :start_time, {step: 60}  %><br><br>
 
 <%= f.label :duration, "Duration (days):" %>
-<%= f.number_field :duration, {required: true} %><br><br>
+<%= f.number_field :duration  %><br><br>
 
 <%= f.submit %> <%= f.submit "Cancel" %>
 
