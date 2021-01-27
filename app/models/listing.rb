@@ -31,7 +31,7 @@ class Listing < ApplicationRecord
             return "Active"
         else
             if DateTime.now < self.start_date #&& self.draft?
-            return "Not Started"
+            return "Not Started-- Starts: #{self.start_date}"
             else  
                 return self.outcome
             end
