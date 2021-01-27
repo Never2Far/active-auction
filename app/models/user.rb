@@ -6,13 +6,13 @@ class User < ApplicationRecord
 
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+   :rememberable, :validatable
 
   devise :omniauthable, omniauth_providers: [:google, :facebook]
 
-  # validates :email, presence: true
-  # validates :email, :username, uniqueness: { case_sensitive: false }
-  # validates :username, length: {minimum: 3}
+  validates :email, presence: true
+  validates :email, :username, uniqueness: { case_sensitive: false }
+  validates :username, length: {minimum: 3}
 
 
 
