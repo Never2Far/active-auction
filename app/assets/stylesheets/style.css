@@ -206,3 +206,7 @@ vertical-align: top;
     border-bottom-width: 4px;
     border-bottom-style: solid;
   }
+
+  .high-bidder-notice {
+    color: #4CAF50;
+  }
