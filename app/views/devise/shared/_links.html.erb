@@ -3,6 +3,8 @@
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+
+  <br><span>Don't have an account?</span><br>
   <%= link_to "Sign up", new_registration_path(resource_name) %><br />
 <% end %>
 
@@ -19,6 +21,7 @@
 <% end %>
 
 <%- if devise_mapping.omniauthable? %>
+<br><span>Or</span><br>
   <%- resource_class.omniauth_providers.each do |provider| %>
     <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
   <% end %>
