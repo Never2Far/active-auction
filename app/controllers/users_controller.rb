@@ -20,7 +20,15 @@ class UsersController < ApplicationController
         @user = User.find_by(id: params[:id])
 
         @user.update(username: user_params[:username])
-        redirect_to '/dashboard'
+        # @user.username = user_params[:username]
+
+        if @user.update(username: user_params[:username])
+            redirect_to '/dashboard'
+        else
+            flash[:alert] = "That username is already taken, please try another."
+        end
+
+        # redirect_to '/dashboard'
     end
 
     private
