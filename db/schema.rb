@@ -10,12 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_13_202027) do
+ActiveRecord::Schema.define(version: 2021_08_23_214102) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "auctions", force: :cascade do |t|
-    t.string "name"
+    t.text "name"
     t.boolean "private?"
-    t.string "type"
+    t.text "type"
     t.datetime "start_date"
     t.datetime "end_date"
     t.datetime "start_time"
@@ -39,27 +42,9 @@ ActiveRecord::Schema.define(version: 2021_01_13_202027) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "items", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.integer "listing_id"
-    t.integer "auction_id"
-    t.string "category"
-    t.string "keywords"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "items_listings", force: :cascade do |t|
-    t.integer "item_id", null: false
-    t.integer "listing_id", null: false
-    t.index ["item_id"], name: "index_items_listings_on_item_id"
-    t.index ["listing_id"], name: "index_items_listings_on_listing_id"
-  end
-
   create_table "listings", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
+    t.text "title"
+    t.text "description"
     t.integer "seller_id"
     t.integer "auction_id"
     t.decimal "reserve_price"
@@ -70,19 +55,19 @@ ActiveRecord::Schema.define(version: 2021_01_13_202027) do
     t.datetime "end_date"
     t.integer "starting_bid"
     t.integer "winning_bid_id"
-    t.string "item_condition"
+    t.text "item_condition"
     t.integer "item_qty"
     t.integer "lot_size"
     t.boolean "active"
-    t.string "status"
+    t.text "status"
     t.integer "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string "question_text"
-    t.string "answer"
+    t.text "question_text"
+    t.text "answer"
     t.integer "listing_id"
     t.integer "buyer_id"
     t.boolean "read_by_seller"
@@ -109,6 +94,4 @@ ActiveRecord::Schema.define(version: 2021_01_13_202027) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "items_listings", "items"
-  add_foreign_key "items_listings", "listings"
 end
