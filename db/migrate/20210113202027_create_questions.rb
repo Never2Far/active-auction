@@ -1,8 +1,8 @@
 class CreateQuestions < ActiveRecord::Migration[6.0]
   def change
     create_table :questions do |t|
-      t.string :question_text
-      t.string :answer
+      t.text :question_text
+      t.text :answer
       t.integer :listing_id
       t.integer :buyer_id
       t.boolean :read_by_seller

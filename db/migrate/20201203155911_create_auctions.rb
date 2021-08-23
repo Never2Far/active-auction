@@ -1,10 +1,10 @@
 class CreateAuctions < ActiveRecord::Migration[6.0]
   def change
     create_table :auctions do |t|
-      t.string :name
-      # t.string :organization
+      t.text :name
+      # t.text :organization
       t.boolean :private?
-      t.string :type
+      t.text :type
       t.datetime :start_date
       t.datetime :end_date
       t.datetime :start_time
